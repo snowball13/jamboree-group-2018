@@ -81,7 +81,7 @@ def get_average_lob1(data):
     ei = 0
     for i in ids:
         subset = [j for j in range(len(data['AIRSID'])) if data['AIRSID'][j] == i]
-        tally[ei] = sum(data['LOB1'])
+        tally[ei] = sum(data['LOB1'][subset])
         ei += 1
     return ids, tally / 10000.
 
