@@ -11,12 +11,16 @@ if __name__ == '__main__':
     # print(data.keys())
 
     filename = "AIR_data/Loss_Data/Complete/Region_1_DR.csv"
-    data = extract_data(filename)
-    print(data.keys())
+    data_lob1 = extract_data([filename])
+    print(data_lob1.keys())
 
-    # filename = "AIR_data/Predictor_Data/GEM_HistoricalFreq.csv"
-    # data = extract_data(filename)
-    # print(data.keys())
+    filename = "AIR_data/Predictor_Data/GEM_HistoricalFreq.csv"
+    data_pred = extract_data([filename])
+    print(data_pred.keys())
+
+    ids, avg = get_average_lob1(data_lob1)
+    pred = get_correct_data_arrays(ids, avg, data_pred['AIRSID'], data_pred['SUM_FREQ'])
+    print len(ids), len(avg), len(pred)
 
     # print(len(data['AIRSID']))
     # print(data.keys())

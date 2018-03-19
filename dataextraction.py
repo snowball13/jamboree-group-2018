@@ -16,8 +16,23 @@ def extract_data(files):
             for row in reader:
                 for field, value in row.items():
                     if field:
-                        data[field].append(value)
+                        if value:
+                            data[field].append(float(value))
 
+    for fieldname in data:
+        data[fieldname] = np.array(data[fieldname])
+    return data
+
+def extract_predictor_data(filename):
+    with open(filename) as csvfile:
+        reader = csv.DictReader(csvfile)
+        if initialise is True:
+            data = {f: [] for f in reader.fieldnames if f}
+            initialise = False
+        for row in reader:
+            for field, value in row.items():
+                if field:
+                    data[field].append(value)
     for fieldname in data:
         data[fieldname] = np.array(data[fieldname])
     return data
@@ -62,11 +77,21 @@ def get_datasplit_indices(n):
 
 def get_average_lob1(data):
     ids = sorted(set(data['AIRSID']))
-    tally = np.array(len(ids))
+    tally = np.zeros(len(ids))
     ei = 0
     for i in ids:
-    	for j in range(len(ids)):
-    		if i == data['AIRSID'][j]:
-    			tally[ei] += data['LOB1'][j]
-    	ei += 1
+        subset = [j for j in range(len(data['AIRSID'])) if data['AIRSID'][j] == i]
+        tally[ei] = sum(data['LOB1'])
     return ids, tally / 10000.
+
+
+def get_correct_data_arrays(ids1, avg1, ids2, pred2):
+    length = len(ids1)
+    pred = np.zeros(length)
+    pred[:] = np.nan
+    for j in range(len(ids1)):
+        for k in range(len(ids2)):
+            if ids1[j] == ids2[k]:
+                pred[j] = pred2[k]
+                break
+    return pred
