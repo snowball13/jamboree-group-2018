@@ -59,3 +59,14 @@ def get_datasplit_indices(n):
     np.random.seed(42)
     indices = np.random.choice(n - 1, int(0.2 * (n - 1)), replace=False)
     return indices
+
+def get_average_lob1(data):
+    ids = sorted(set(data['AIRSID']))
+    tally = np.array(len(ids))
+    ei = 0
+    for i in ids:
+    	for j in range(len(ids)):
+    		if i == data['AIRSID'][j]:
+    			tally[ei] += data['LOB1'][j]
+    	ei += 1
+    return ids, tally / 10000.
