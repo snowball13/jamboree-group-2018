@@ -104,8 +104,8 @@ def trainiter_nnet_3layer(in_data, in_tgt, Tran1, bias1, Tran2, bias2, eta):
     """Do one training iteration of a 3 layer neural network with one output.
     
     Inputs:
-    in_data: length Ni input array. Ni = number of inputs per datapoint
-    in_tgt: target output value for in_data
+    in_data: length Nd*Ni input array. Ni = number of inputs per datapoint
+    in_tgt: target output value for in_data (Nd)
     Tran1: Ni*N1 matrix containing transmission coefficients from each input to
         each node in the hidden layer. N1 = number of nodes in hidden layer
     bias1: length N1 array with biases for each node in hidden layer
@@ -362,8 +362,7 @@ def validation_testing(N1):
     ax.set_ylabel('Average error per datapoint')
     ax.legend()
     plt.show()
-    
-    
+       
     
 
 def test_neuralnetwork_strategy():
