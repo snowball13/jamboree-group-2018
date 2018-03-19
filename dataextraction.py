@@ -86,14 +86,18 @@ def get_average_lob1(data):
     return ids, tally / 10000.
 
 
-def get_correct_data_arrays(ids1, avg1, ids2, pred2):
-    length = len(ids1)
-    pred = np.zeros(length)
-    pred[:] = np.nan
-    print len(ids1)
-    for j in range(len(ids1)):
-        for k in range(len(ids2)):
-            if ids1[j] == ids2[k]:
-                pred[j] = pred2[k]
+def get_correct_data_arrays(ids1, avg1, data_pred):
+    for fieldname in data_pred:
+        if fieldname == 'AIRSID':
+            ids2 = data_pred[fieldname]
+        else:
+            pred2 = data_pred[fieldname]
+    length = len(ids2)
+    avg = np.zeros(length)
+    avg[:] = np.nan
+    for j in range(len(ids2)):
+        for k in range(len(ids1)):
+            if ids2[j] == ids1[k]:
+                avg[j] = avg1[k]
                 break
-    return pred
+    return ids2, avg, pred2
