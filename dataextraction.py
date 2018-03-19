@@ -82,6 +82,7 @@ def get_average_lob1(data):
     for i in ids:
         subset = [j for j in range(len(data['AIRSID'])) if data['AIRSID'][j] == i]
         tally[ei] = sum(data['LOB1'])
+        ei += 1
     return ids, tally / 10000.
 
 
@@ -89,6 +90,7 @@ def get_correct_data_arrays(ids1, avg1, ids2, pred2):
     length = len(ids1)
     pred = np.zeros(length)
     pred[:] = np.nan
+    print len(ids1)
     for j in range(len(ids1)):
         for k in range(len(ids2)):
             if ids1[j] == ids2[k]:
