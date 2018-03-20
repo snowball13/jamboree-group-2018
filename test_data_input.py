@@ -50,10 +50,10 @@ if __name__ == '__main__':
     # testpred4 = get_test_data(data_pred4)
     # print(testpred4.shape)
 
-    np.save("testids-new.npy", testids)
-    np.save("testav-new.npy", testav)
+    np.save("testids.npy", testids)
+    np.save("testav.npy", testav)
 
-    np.save("testpred-new.npy", testpred)
+    np.save("testpred.npy", testpred)
 
     # np.save("testpred1.npy", testpred1)
     # np.save("testpred2.npy", testpred2)
@@ -81,10 +81,10 @@ if __name__ == '__main__':
     # valpred4 = get_validation_data(data_pred4)
     # print(valpred4.shape)
 
-    np.save("valids-new.npy", valids)
-    np.save("valav-new.npy", valav)
+    np.save("valids.npy", valids)
+    np.save("valav.npy", valav)
 
-    np.save("valpreds-new.npy", valpred)
+    np.save("valpreds.npy", valpred)
     #
     # np.save("valpred1.npy", valpred1)
     # np.save("valpred2.npy", valpred2)
