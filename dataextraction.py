@@ -1,6 +1,5 @@
 import csv
 import numpy as np
-import AnalyseData
 
 
 def extract_data(files):
@@ -25,66 +24,26 @@ def extract_data(files):
     return data
 
 
-def extract_predictor_data(files):
-    # First row of file is used to create the keywords for the subsequent rows that
-    # are read in as a dictionary
-    data = []
-    for filename in files:
-        with open(filename) as csvfile:
-            reader = csv.DictReader(csvfile)
-            if initialise is True:
-                data = {f: [] for f in reader.fieldnames if f}
-                initialise = False
-            for row in reader:
-                for field, value in row.items():
-                    if field:
-                        if value:
-                            data[field].append(float(value))
-
-    for fieldname in data:
-        data[fieldname] = np.array(data[fieldname])
-    return data
-
-
 def get_test_data(data):
-    # get length of fist column
-    # n = 0
-    # for firstcolumn in data:
-    #     n = len(data[firstcolumn])
-    #     breakgit
+
     n = len(data)
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
 
     # remove data of indices
-    # for fieldname in data:
-    #     data[fieldname] = np.delete(data[fieldname], indices)
-    # return data
-
-    # for i in indices:
     output = np.delete(data, indices)
 
     return output
 
 
 def get_validation_data(data):
-    # get length of fist column
-    # n = 0
-    # for firstcolumn in data:
-    #     n = len(data[firstcolumn])
-    #     break
+
     n = len(data)
-    # print(n)
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
 
-    # get data of indices
-    # for fieldname in data:
-    #     data[fieldname] = data[fieldname][indices]
-    #
-    # return data
     output = data[indices]
 
     return output
@@ -112,7 +71,7 @@ def get_correct_data_arrays(ids1, avg1, ids2, pred2):
     avg = np.zeros(length)
     for j in range(len(ids2)):
         for k in range(len(ids1)):
-            if (ids2[j] == ids1[k]):
+            if ids2[j] == ids1[k]:
                 avg[j] = avg1[k]
                 break
     return avg
