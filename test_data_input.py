@@ -7,7 +7,7 @@ if __name__ == '__main__':
     lossfiles = glob.glob("AIR_data/Loss_Data/Complete/Region_*_DR.csv")
     lossfiles = sorted(lossfiles)
     print(lossfiles)
-    data_lob1 = extract_data(lossfiles[0:1])
+    data_lob1 = extract_data(lossfiles)
     print(data_lob1.keys())
 
     # filename = "AIR_data/Loss_Data/Complete/Region_1_DR.csv"
@@ -19,8 +19,8 @@ if __name__ == '__main__':
     print(data_pred.keys())
 
     ids, avg = get_average_lob1(data_lob1)
-    ids, avg, pred = get_correct_data_arrays(ids, avg, data_pred)
-    print len(ids), len(avg), len(pred)
+    # ids, avg, pred = get_correct_data_arrays(ids, avg, data_pred)
+    # print len(ids), len(avg), len(pred)
 
     # print(len(data['AIRSID']))
     # print(data.keys())
