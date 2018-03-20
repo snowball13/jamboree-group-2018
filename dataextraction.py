@@ -50,8 +50,9 @@ def get_validation_data(data):
 
 
 def get_datasplit_indices(n):
-    np.random.seed(42)
+    np.random.seed(100)
     indices = np.random.choice(n - 1, int(0.2 * (n - 1)), replace=False)
+    print indices[0]
     return indices
 
 
