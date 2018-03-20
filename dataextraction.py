@@ -112,7 +112,8 @@ def get_correct_data_arrays(ids1, avg1, ids2, pred2):
     avg = np.zeros(length)
     for j in range(len(ids2)):
         for k in range(len(ids1)):
-            if ids2[j] == ids1[k]:
+            if (ids2[j] == ids1[k]):
+                print("something not zero")
                 avg[j] = avg1[k]
                 break
     return avg
