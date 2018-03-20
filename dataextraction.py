@@ -25,12 +25,34 @@ def extract_data(files):
     return data
 
 
+def extract_predictor_data(files):
+    # First row of file is used to create the keywords for the subsequent rows that
+    # are read in as a dictionary
+    data = []
+    for filename in files:
+        with open(filename) as csvfile:
+            reader = csv.DictReader(csvfile)
+            if initialise is True:
+                data = {f: [] for f in reader.fieldnames if f}
+                initialise = False
+            for row in reader:
+                for field, value in row.items():
+                    if field:
+                        if value:
+                            data[field].append(float(value))
+
+    for fieldname in data:
+        data[fieldname] = np.array(data[fieldname])
+    return data
+
+
 def get_test_data(data):
     # get length of fist column
-    n = 0
-    for firstcolumn in data:
-        n = len(data[firstcolumn])
-        break
+    # n = 0
+    # for firstcolumn in data:
+    #     n = len(data[firstcolumn])
+    #     break
+    n = len(data[0])
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
@@ -43,10 +65,12 @@ def get_test_data(data):
 
 def get_validation_data(data):
     # get length of fist column
-    n = 0
-    for firstcolumn in data:
-        n = len(data[firstcolumn])
-        break
+    # n = 0
+    # for firstcolumn in data:
+    #     n = len(data[firstcolumn])
+    #     break
+    n = len(data[0])
+    print(n)
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
@@ -54,6 +78,7 @@ def get_validation_data(data):
     # get data of indices
     for fieldname in data:
         data[fieldname] = data[fieldname][indices]
+
     return data
 
 
