@@ -51,16 +51,21 @@ def get_test_data(data):
     # n = 0
     # for firstcolumn in data:
     #     n = len(data[firstcolumn])
-    #     break
-    n = len(data[0])
+    #     breakgit
+    n = len(data)
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
 
     # remove data of indices
-    for fieldname in data:
-        data[fieldname] = np.delete(data[fieldname], indices)
-    return data
+    # for fieldname in data:
+    #     data[fieldname] = np.delete(data[fieldname], indices)
+    # return data
+
+    # for i in indices:
+    output = np.delete(data, indices)
+
+    return output
 
 
 def get_validation_data(data):
@@ -69,7 +74,7 @@ def get_validation_data(data):
     # for firstcolumn in data:
     #     n = len(data[firstcolumn])
     #     break
-    n = len(data[0])
+    n = len(data)
     print(n)
 
     # get 20 percent of indices
