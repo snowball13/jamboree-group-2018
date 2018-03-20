@@ -1,41 +1,22 @@
 import glob
 from dataextraction import *
 # from jamboree import *
+from AnalyseData import *
 
 if __name__ == '__main__':
     # get all files
     lossfiles = glob.glob("AIR_data/Loss_Data/Complete/Region_*_DR.csv")
     lossfiles = sorted(lossfiles)
     print(lossfiles)
-
-    data_loss = extract_data(lossfiles)
+    data_loss = extract_data(lossfiles[0:1])
     print(data_loss.keys())
 
-    region_ids = get_ids_list(data_loss)
-    print(len(region_ids))
+    ids, avg = get_average_lob1(data_loss)
 
-    # filename = "AIR_data/Loss_Data/Complete/Region_1_DR.csv"
-    # data_lob1 = extract_data([filename])
-    # print(data_lob1.keys())
-    #
-    # filename = "AIR_data/Predictor_Data/GEM_HistoricalFreq.csv"
-    # data_pred = extract_data([filename])
-    # print(data_pred.keys())
+    ids_pred, data_pred  = get_prediction_data()
 
-    # ids, avg = get_average_lob1(data_loss)
-
-    predfiles = glob.glob("AIR_data/Predictor_Data/*.csv")
-    predfiles = sorted(predfiles)
-    print(predfiles)
-
-    data_pred = extract_data(predfiles)
-    print(data_pred.keys())
-
-    pred_ids = get_ids_list(data_loss)
-    print(len(pred_ids))
-
-    # ids, avg, pred = get_correct_data_arrays(ids, avg, data_pred)
-    # print len(ids), len(avg), len(pred)
+    avg = get_correct_data_arrays(ids, avg, ids_pred, data_pred)
+    print len(ids_pred), len(avg), len(data_pred)
 
     # print(len(data['AIRSID']))
     # print(data.keys())
