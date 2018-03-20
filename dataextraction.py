@@ -81,10 +81,13 @@ def get_validation_data(data):
     indices = get_datasplit_indices(n)
 
     # get data of indices
-    for fieldname in data:
-        data[fieldname] = data[fieldname][indices]
+    # for fieldname in data:
+    #     data[fieldname] = data[fieldname][indices]
+    #
+    # return data
+    output = data[indices]
 
-    return data
+    return output
 
 
 def get_datasplit_indices(n):
