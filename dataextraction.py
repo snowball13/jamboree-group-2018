@@ -23,20 +23,6 @@ def extract_data(files):
         data[fieldname] = np.array(data[fieldname])
     return data
 
-def extract_predictor_data(filename):
-    with open(filename) as csvfile:
-        reader = csv.DictReader(csvfile)
-        if initialise is True:
-            data = {f: [] for f in reader.fieldnames if f}
-            initialise = False
-        for row in reader:
-            for field, value in row.items():
-                if field:
-                    data[field].append(value)
-    for fieldname in data:
-        data[fieldname] = np.array(data[fieldname])
-    return data
-
 
 def get_test_data(data):
     # get length of fist column
@@ -75,6 +61,7 @@ def get_datasplit_indices(n):
     indices = np.random.choice(n - 1, int(0.2 * (n - 1)), replace=False)
     return indices
 
+
 def get_average_lob1(data):
     ids = sorted(set(data['AIRSID']))
     tally = np.zeros(len(ids))
@@ -100,4 +87,10 @@ def get_correct_data_arrays(ids1, avg1, data_pred):
             if ids2[j] == ids1[k]:
                 avg[j] = avg1[k]
                 break
+
     return ids2, avg, pred2
+
+
+def get_ids_list(data):
+    ids = sorted(set(data['AIRSID']))
+    return ids
