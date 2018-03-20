@@ -115,4 +115,6 @@ def get_prediction_data():
   # UHFindex = np.nonzero(np.in1d(UHF[:,0], inttotal))[0]
   # GNLindex = np.nonzero(np.in1d(GNL[:,0], inttotal))[0]
 
-  return GGHF[GGHFindex, 0], GPC[GPCindex, 1], GGDP[GGDPindex, 1], GGHF[GGHFindex, 1], GAS[GASindex, 1]
+
+
+  return GGHF[GGHFindex, 0].astype(np.float64), GPC[GPCindex, 1].astype(np.float64), GGDP[GGDPindex, 1].astype(np.float64), GGHF[GGHFindex, 1].astype(np.float64), GAS[GASindex, 1].astype(np.float64)
