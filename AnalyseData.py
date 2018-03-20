@@ -92,19 +92,19 @@ def get_prediction_data():
 
     ############# This is how you find the observations that are common between all predictors
 
-    # int1 = np.array(sorted(set(GPC[:, 0]).intersection(GGDP[:, 0])))
-    # int2 = np.array(sorted(set(GGHF[:, 0]).intersection(GAS[:, 0])))
+    int1 = np.array(sorted(set(GPC[:, 0]).intersection(GGDP[:, 0])))
+    int2 = np.array(sorted(set(GGHF[:, 0]).intersection(GAS[:, 0])))
     # int1 = np.array(list(set(GPC[:,0]).intersection(GGDP[:,0])))
     # int2 = np.array(list(set(GGHF[:,0]).intersection(GPGA[:,0])))
     # int3 = np.array(list(set(GAS[:,0]).intersection(GMIPC[:,0])))
     # int4 = np.array(list(set(GSB[:,0]).intersection(UHF[:,0])))
-    # inttotal = np.array(sorted(set(int1).intersection(np.array(sorted(set(int2))))))
+    inttotal = np.array(sorted(set(int1).intersection(np.array(sorted(set(int2))))))
     # inttotal = np.array(list(set(int1).intersection(np.array(list(set(int2).intersection(np.array(list(set(int3).intersection(np.array(list(set(int4).intersection(GNL[:,0]))))))))))))
     # print len(inttotal)\n",
     # print max([len(ObIdorig31), len(ObIdunpre31), len(ObId1500_31),len(ObId1000_31),len(ObId500_31),len(ObId67_31)])\n",
 
 
-    inttotal = np.array(sorted(set(GPGA[:, 0])))
+    # inttotal = np.array(sorted(set(GPGA[:, 0])))
 
     print("indexlength", len(inttotal))
 
@@ -134,4 +134,4 @@ def get_prediction_data():
 
 
 
-    return indicesout, GPGAout
+    return indicesout, GPCout, GGDPout, GGHFout, GASout, 
