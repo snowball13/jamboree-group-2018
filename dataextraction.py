@@ -75,7 +75,7 @@ def get_validation_data(data):
     #     n = len(data[firstcolumn])
     #     break
     n = len(data)
-    print(n)
+    # print(n)
 
     # get 20 percent of indices
     indices = get_datasplit_indices(n)
